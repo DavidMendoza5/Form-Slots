@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="badge bg-secondary">
+      <button class="btn btn-primary" @click="componenteSeleccionado= 'IniciarSesion'">Iniciar sesión</button>
+      <button class="btn btn-primary" @click="componenteSeleccionado= 'CambiarClave'">Cambiar contraseña</button>
+      <hr>
+      <!-- La etiqueta keep-alive evita que el componente se destruya, es una etiqueta exclusiva de Vue -->
+      <keep-alive>
+        <component :is="componenteSeleccionado"></component>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MostrarFormulario from './components/mostrarFormulario.vue'
+import IniciarSesion from './components/iniciarSesion.vue'
+import CambiarClave from './components/cambiarClave.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    MostrarFormulario,
+    IniciarSesion,
+    CambiarClave
+  },
+  data() {
+    return {
+      componenteSeleccionado: 'IniciarSesion'
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  h3 {
+    color: red;
+  }
 </style>
